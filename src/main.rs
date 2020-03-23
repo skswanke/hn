@@ -130,17 +130,21 @@ fn print_posts(page: i32) {
 
 fn main() {
     let args = Cli::from_args();
-    let mut is_article = false;
-    let mut is_comments = false;
 
-    match args.article {
-        Option::Some(article) => print_article(article),
-        Option::None => is_article = true,
-    }
-    match args.comments {
-        Option::Some(comments) => open_comments(comments),
-        Option::None => is_comments = true,
-    }
+    let is_article = match args.article {
+        Option::Some(article) => {
+            print_article(article);
+            true
+        }
+        Option::None => false,
+    };
+    let is_comments = match args.comments {
+        Option::Some(comments) => {
+            open_comments(comments);
+            true
+        }
+        Option::None => false,
+    };
 
     if !is_article && !is_comments {
         print_posts(args.page);
