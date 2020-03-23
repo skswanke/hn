@@ -94,21 +94,13 @@ fn open_in_tab(link: String) {
 
 fn print_article(article: i32) {
     let link = get_article_links(article);
-    println!("{}: {}", "Article".bright_blue(), link.url);
-    println!(
-        "{}: https://news.ycombinator.com/item?id={}",
-        "Comments".bright_red(),
-        link.article_id
-    );
     open_in_tab(link.url);
     return;
 }
 
 fn open_comments(comments: i32) {
     let link = get_article_links(comments);
-    println!("{}: {}", "Article".bright_blue(), link.url);
     let comments_link = format!("https://news.ycombinator.com/item?id={}", link.article_id);
-    println!("{}: {}", "Comments".bright_red(), comments_link);
     open_in_tab(comments_link);
     return;
 }
