@@ -76,16 +76,16 @@ fn get_article_links(article_no: i32) -> Link {
     }
 }
 
-fn open_in_tab(link: String) {
+fn open_in_tab(url: String) {
     if cfg!(target_os = "windows") {
         Command::new("cmd")
-            .args(&["/C", &format!("explorer \"{}\"", link)])
+            .args(&["/C", &format!("explorer \"{}\"", url)])
             .output()
             .expect("failed to open link")
     } else {
         Command::new("sh")
             .arg("-c")
-            .arg(format!("open \"{}\"", link))
+            .arg(format!("open \"{}\"", url))
             .output()
             .expect("failed to open link")
     };
