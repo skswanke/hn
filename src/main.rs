@@ -13,6 +13,8 @@ struct Cli {
     article: Option<i32>,
     #[structopt(short, long)]
     comments: Option<i32>,
+    #[structopt(short, long)]
+    open: bool,
 }
 
 const PAGE_SIZE: i32 = 10;
@@ -137,6 +139,9 @@ fn main() {
         }
         Option::None => false,
     };
+    if args.open {
+        open_in_tab("https://news.ycombinator.com".to_string());
+    }
 
     if !is_article && !is_comments {
         print_posts(args.page);
