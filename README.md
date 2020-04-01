@@ -2,6 +2,14 @@
 
 The HackerNews CLI we deserve, but don't need, or something.
 
+## Installation
+
+In the source directory run:
+```sh
+cargo build --release
+```
+Then the runnable binary will be in `/target/release/`.
+
 ## Usage
 
 Show first 10 results for 'top'
