@@ -15,6 +15,8 @@ struct Cli {
     comments: Option<i32>,
     #[structopt(short, long)]
     open: bool,
+    #[structopt(short, long)]
+    both: Option<i32>,
 }
 
 const PAGE_SIZE: i32 = 10;
@@ -94,7 +96,7 @@ fn open_in_tab(url: String) {
     return;
 }
 
-fn print_article(article: i32) {
+fn open_article(article: i32) {
     let link = get_article_links(article);
     open_in_tab(link.url);
     return;
@@ -127,7 +129,7 @@ fn main() {
 
     let is_article = match args.article {
         Option::Some(article) => {
-            print_article(article);
+            open_article(article);
             true
         }
         Option::None => false,
@@ -139,11 +141,19 @@ fn main() {
         }
         Option::None => false,
     };
+    let is_article_comments = match args.both {
+        Option::Some(both) => {
+            open_comments(both);
+            open_article(both);
+            true
+        }
+        Option::None => false,
+    };
     if args.open {
         open_in_tab("https://news.ycombinator.com".to_string());
     }
 
-    if !is_article && !is_comments {
+    if !is_article && !is_comments && !is_article_comments {
         print_posts(args.page);
     }
 }
