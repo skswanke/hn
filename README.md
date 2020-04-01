@@ -54,7 +54,7 @@ hn -c 1
 
 Open both
 ```sh
-hn -a 1 -c 1
+hn -b 1
 ```
 
 Open front page in default browser
